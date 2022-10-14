@@ -26,8 +26,6 @@ const app = Consumer.create({
       const payload = {
         Message: '============= INTRANSIT =================',
         TopicArn: topic,
-        // MessageGroupId: 'VENDORTWOgroup1234',
-        // MessageDeduplicationId: chance.guid(), // typically a hash of the message body
       };
 
       sns.publish(payload).promise()
@@ -38,36 +36,7 @@ const app = Consumer.create({
     }
   },
 });
-// async function confirmDelivery(data){
-//   let message = '';
-//   try {
-//     let body = JSON.parse(data.Body);
-//     console.log('Delivery Picked up');
-//     message = body.Message;
-//     console.log(message);
-//   } catch (e){
-//     console.log('this did not work', e.message);
-//   }
 
-//   let stringifiedMessage = JSON.stringify(message);
-
-//   let payload = {
-//     body: stringifiedMessage,
-//     groupId: 'group1234',
-//     deduplicationId: chance.guid(), // typically a hash of the message body
-//   }
-
-//   try {
-//     let response = await producer.send(payload);
-//     console.log(response);
-//   } catch (e) {
-//     console.log(e)
-//   }
-
-// }
-
-
-// _____________________________________________
 
 app.on('error', (err) => {
   console.error(err.message);
